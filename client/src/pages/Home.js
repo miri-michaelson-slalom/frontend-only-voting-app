@@ -2,9 +2,9 @@ import React from "react"
 import Loading from '../components/loading';
 import traverseLogo from '../public/images/traverse-logo-full.png' 
 import CTA from '../components/CTA';
-import Text from '../components/text';
+// import Text from '../components/text';
 import styled from 'styled-components';
-import { generate8DigitNumber } from '../utils/math-utils';
+// import { generate8DigitNumber } from '../utils/math-utils';
 import { useNavigate } from 'react-router-dom'
 
 const StyledDiv = styled.div`
@@ -27,14 +27,14 @@ const PageWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `
-const TextWrapper = styled.div`
-  margin: 10px;
-  text-align: center;
-`
+// const TextWrapper = styled.div`
+//   margin: 10px;
+//   text-align: center;
+// `
 
 const Home = () => {
   let navigate = useNavigate();
-  localStorage.setItem('userId', 'user-' + generate8DigitNumber())
+  // localStorage.setItem('userId', 'user-' + generate8DigitNumber())
 
   const [displayLoading, setDisplayLoading] = React.useState(true)
   React.useEffect(() => {
@@ -42,7 +42,7 @@ const Home = () => {
   }, [])
 
   const clickHandler = () => {
-    navigate('/scan-qr');
+    navigate('/game-description');
   }
 
   const HomeScreen = (
@@ -50,11 +50,13 @@ const Home = () => {
       <StyledImgWrapper>
         <img alt="traverse logo" width="250px" src={traverseLogo}/>
       </StyledImgWrapper>
-      <TextWrapper>
-        <Text type='h1' copy='SCAN QR CODE TO START GAME!'/>
-      </TextWrapper>
+      {/* <TextWrapper> */}
+        {/* <Text type='h1' copy='SCAN QR CODE TO START GAME!'/> */}
+        {/* <Text type='h1' copy='START GAME!'/> */}
+
+      {/* </TextWrapper> */}
       <StyledDiv>
-      <CTA copy="SCAN NOW" onClickHandler={clickHandler}/>
+      <CTA copy="START GAME" onClickHandler={clickHandler}/>
       </StyledDiv>
     </PageWrapper>
   );

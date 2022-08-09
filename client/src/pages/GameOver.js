@@ -2,7 +2,7 @@
 import CTA from '../components/CTA';
 import Text from '../components/text';
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 import styled from 'styled-components'
@@ -29,28 +29,28 @@ const TextWrapper = styled.div`
 const GameOver = () => {
   let navigate = useNavigate();
 
-  const { gameId } = useParams();
-  const userId = localStorage.getItem("userId");
+  // const { gameId } = useParams();
+  // const userId = localStorage.getItem("userId");
 
-  const [hasUserVoted, setHasUserVoted] = React.useState(false)
+  // const [hasUserVoted, setHasUserVoted] = React.useState(false)
 
-  React.useEffect(() => {
-    const getUsersVote = async () => {
-      await axios.get(`http://localhost:5000/${gameId}/${userId}`)
-        .then(response => setHasUserVoted(response.data.length > 0))
-    }
-    getUsersVote()
-  }, [gameId, userId])
+  // React.useEffect(() => {
+  //   const getUsersVote = async () => {
+  //     await axios.get(`http://localhost:5000/${gameId}/${userId}`)
+  //       .then(response => setHasUserVoted(response.data.length > 0))
+  //   }
+  //   getUsersVote()
+  // }, [gameId, userId])
 
   const onClickHandler = () => {
-    navigate(`/`);
+    navigate(`/results`);
   }
 
   const hasVotedGameOverText = 
     'Your vote was registered. Your score will be shown at the end of the game, time to move on to the next adventure.'
-  const timedOutGameOverText = 
-    'Voting has ended on this round, time to move on to the next adventure. '
-  const gameOverText = hasUserVoted ? hasVotedGameOverText : timedOutGameOverText
+  // const timedOutGameOverText = 
+  //   'Voting has ended on this round, time to move on to the next adventure. '
+  const gameOverText = hasVotedGameOverText;
 
   return (
     <StyledDiv className="GameDescription" >
@@ -58,7 +58,7 @@ const GameOver = () => {
         <Text type='h1' copy='ROUND COMPLETE!'/>
         <Text type='p' size='small' copy={gameOverText}/>
       </TextWrapper>
-      <CTA onClickHandler={onClickHandler} copy="START"/>
+      <CTA onClickHandler={onClickHandler} copy="START NEW ROUND"/>
     </StyledDiv>
   );
 }

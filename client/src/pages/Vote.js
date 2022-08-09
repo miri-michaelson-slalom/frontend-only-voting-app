@@ -1,8 +1,8 @@
 
-import axios from 'axios';
+// import axios from 'axios';
 import React from 'react';
 import Text from '../components/text';
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
   DefaultPlant1,
   DefaultPlant2,
@@ -46,27 +46,24 @@ const ImageWrapper = styled.div`
   align-items: center;
 `
 
-
 const Vote = () => {
   const navigate = useNavigate();
-  const { gameId } = useParams();
-  const userId = localStorage.getItem('userId')
   const [gameEnded, setGameEnded] = React.useState(false)
 
-  setInterval(async () =>  {
-    const game = await axios.get(`http://localhost:5000/games/${gameId}`)
-    const gameEnded = !game.data[0].isOngoing;
-    setGameEnded(gameEnded)
-  }, 5000)
+  // setInterval(async () =>  {
+    // const game = await axios.get(`http://localhost:5000/games/${gameId}`)
+    // const gameEnded = !game.data[0].isOngoing;
+    // setGameEnded(gameEnded)
+  // }, 5000)
 
   React.useEffect(() => {
     if (gameEnded) {
-      navigate(`/game-over/${gameId}`);
+      navigate(`/game-over`);
     }
-  }, [navigate, gameId, gameEnded]);
+  }, [navigate, gameEnded]);
 
   const submitHandler = (e) => {
-    axios.post('http://localhost:5000/register-vote', {game_id: gameId, userId: userId }).then(response =>  console.log(response))
+    // axios.post('http://localhost:5000/register-vote', {game_id: gameId, vote: vote, userId: userId }).then(response =>  console.log(response))
     setTimeout(() => setGameEnded(true), 2000)
   };
 

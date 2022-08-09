@@ -30,7 +30,7 @@ const GameDescription = () => {
   let navigate = useNavigate();
 
   const onClickHandler = () => {
-    navigate(`/game/${gameId}`);
+    navigate(`/game`);
   }
   const gameDescriptionText = `
     You just appeared in a world where there’s not many natural resources around and you are really hungry and need to eat to carry on your adventure... 
